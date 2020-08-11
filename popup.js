@@ -1,15 +1,17 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    function toggleStatus(enabled) {
-        chrome.storage.sync.set({enabled: enabled}, () => {
-            toggleUI(enabled);
+    function toggleStatus(enabled, port) {
+        chrome.storage.sync.set({enabled: enabled, port: port}, () => {
+            toggleUI(enabled, port);
         });
     }
 
-    function toggleUI(enabled) {
+    function toggleUI(enabled, port) {
         const suffix = `${enabled ? "" : "_disabled"}.png`;
 
         document.querySelector("#enable").checked = enabled;
+        document.querySelector("#port").value = port;
+        document.querySelector("#port").disabled = enabled;
 
         chrome.browserAction.setIcon({
             path: {
@@ -21,11 +23,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     document.querySelector("#enable").addEventListener("click", function () {
-        toggleStatus(this.checked);
+        const port = parseInt(document.querySelector("#port").value) || 80;
+
+        toggleStatus(this.checked, port);
     });
 
-    chrome.storage.sync.get({enabled: true}, result => {
-        toggleUI(result.enabled);
+    document.querySelector("#port").addEventListener("input", function () {
+        if (/[^0-9]|^0/g.test(this.value)) {
+            this.classList.add('error');
+        } else {
+            this.classList.remove('error');
+        }
+    });
+
+    document.querySelector("#port").addEventListener("blur", function () {
+        this.value = this.value.replace(/[^0-9]|^0/ig, '');
+        this.classList.remove('error');
+    });
+
+    chrome.storage.sync.get({enabled: true, port: 80}, result => {
+        toggleUI(result.enabled, result.port);
     });
 
 });

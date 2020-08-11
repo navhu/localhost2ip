@@ -44,10 +44,10 @@ const internalIp = async () => {
     })
 }
 
-chrome.storage.sync.get({enabled: true}, result => {
-    if (result.enabled && /^http:\/\/localhost/.test(location.href)) {
+chrome.storage.sync.get({enabled: true, port: 80}, result => {
+    if (result.enabled && /^http:\/\/localhost.*/.test(location.href)) {
         internalIp().then(ip => {
-            location.replace('http://' + ip);
+            location.replace('http://' + ip + ':' + result.port);
         })
     }
 });

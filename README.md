@@ -2,7 +2,7 @@
 
 ![demo](demo.gif)
 
-A Chrome extension that automatically converts localhost to internal IP.
+A Chrome extension that automatically redirect http://localhost to your internal IP.
 
 When using it for the first time, 
 this extension will apply for permission to use microphone（ [Why?](https://groups.google.com/forum/#!topic/discuss-webrtc/6stQXi72BEU) ）. 

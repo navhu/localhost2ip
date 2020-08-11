@@ -1,8 +1,8 @@
 {
   "name": "localhost2ip",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "manifest_version": 2,
-  "description": "A Chrome extension that automatically converts localhost to internal IP",
+  "description": "Automatically redirect http://localhost to your internal IP",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
