@@ -44,10 +44,12 @@ const internalIp = async () => {
     })
 }
 
+const redirectRegs = /localhost|127\.0\.0\.1/;
+
 chrome.storage.sync.get({enabled: true, port: 80}, result => {
-    if (result.enabled && /^http:\/\/localhost.*/.test(location.href)) {
+    if (result.enabled && redirectRegs.test(location.hostname)) {
         internalIp().then(ip => {
-            location.replace('http://' + ip + ':' + result.port);
+            location.replace('http://' + ip + ':' + (location.port || result.port) + location.pathname + location.search + location.hash);
         })
     }
 });

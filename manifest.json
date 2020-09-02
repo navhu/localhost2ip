@@ -1,6 +1,6 @@
 {
   "name": "localhost2ip",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "manifest_version": 2,
   "description": "Automatically redirect http://localhost to your internal IP",
   "icons": {
@@ -26,8 +26,8 @@
         "inject.js"
       ],
       "matches": [
-        "http://*/*",
-        "https://*/*"
+        "http://localhost/*",
+        "http://127.0.0.1/*"
       ]
     }
   ],
