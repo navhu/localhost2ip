@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector("#port").value = port;
         document.querySelector("#port").disabled = enabled;
 
-        chrome.browserAction.setIcon({
+        chrome.action.setIcon({
             path: {
                 "19": "icons/icon19" + suffix,
                 "38": "icons/icon38" + suffix,
