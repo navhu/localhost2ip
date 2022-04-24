@@ -3,7 +3,7 @@ const internalIp = async () => {
         throw new Error("Not supported.");
     }
 
-    const peerConnection = new RTCPeerConnection({iceServers: []});
+    const peerConnection = new RTCPeerConnection({iceServers: []}, {optional: [{'googIPv6': false}]});
 
     peerConnection.createDataChannel('');
 
