@@ -16,7 +16,7 @@ const internalIp = async () => {
 
     return new Promise(async resolve => {
         peerConnection.addEventListener("icecandidate", async ({candidate}) => {
-            peerConnection.close();
+            // peerConnection.close();
 
             if (candidate && candidate.candidate) {
                 const result = candidate.candidate.split(" ")[4];
@@ -38,7 +38,11 @@ const internalIp = async () => {
                     mediaStream.getTracks().forEach(track => track.stop());
                     resolve(internalIp());
                 }
-                resolve(result);
+                if(/(\d+\.){3}\d/ig.test(result)){
+                    peerConnection.close();
+                    resolve(result);
+                }
+                // resolve(result);
             }
         })
     })
