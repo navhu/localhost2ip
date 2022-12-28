@@ -1,6 +1,6 @@
 {
   "name": "localhost2ip",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "manifest_version": 3,
   "description": "Automatically redirect http://localhost to your internal IP",
   "icons": {
